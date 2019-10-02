@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -70,15 +69,17 @@ class _InputAreaState extends State<StatefulWidget> {
                 style: TextStyle(color: Theme.of(context).primaryColor),
               ),
               onPressed: () {
-                DatePicker.showDatePicker(context,
-                    showTitleActions: true,
-                    minTime: DateTime.now().subtract(Duration(days: 30)),
-                    maxTime: DateTime.now(),
-                    currentTime: DateTime.now(),
-                    locale: LocaleType.en, onConfirm: (date) {
-                  setState(() {
-                    this.date = date;
-                  });
+                showDatePicker(
+                  context: context,
+                  initialDate: date,
+                  firstDate: DateTime.now().subtract(Duration(days: 30)),
+                  lastDate: DateTime.now(),
+                ).then((pickedDate) {
+                  if (pickedDate != null) {
+                    setState(() {
+                      date = pickedDate;
+                    });
+                  }
                 });
               },
             ),
