@@ -93,7 +93,8 @@ class _InputAreaState extends State<StatefulWidget> {
                 child: FlatButton(
                   child: Text("Add Transaction"),
                   onPressed: onButtonPress,
-                  textColor: Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
                 ))
           ],
         ),
