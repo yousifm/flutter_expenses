@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
 
   void startAddNewTransaction(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Colors.transparent,
       context: context,
       builder: (_) {
         return InputArea(onSubmit);
