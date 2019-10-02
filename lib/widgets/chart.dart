@@ -31,6 +31,12 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get maxSpending {
+    return groupedTransactionValues.fold(0.0, (maxValue, item) {
+      return (item['amount'] as double) > maxValue ? item['amount'] : maxValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,8 +51,8 @@ class Chart extends StatelessWidget {
                   return ChartBar(
                     label: data['day'],
                     spendingAmount: data['amount'],
-                    spendingPct: totalSpending > 0
-                        ? (data['amount'] as double) / totalSpending
+                    spendingPct: maxSpending > 0
+                        ? (data['amount'] as double) / maxSpending
                         : 0,
                   );
                 }).toList(),
