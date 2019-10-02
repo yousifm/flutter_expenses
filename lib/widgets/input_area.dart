@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -50,7 +51,7 @@ class _InputAreaState extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(25),
         child: Column(
           children: [
             TextField(
