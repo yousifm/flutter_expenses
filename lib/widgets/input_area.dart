@@ -63,25 +63,30 @@ class _InputAreaState extends State<StatefulWidget> {
               keyboardType:
                   TextInputType.numberWithOptions(decimal: true, signed: false),
             ),
-            FlatButton(
-              child: Text(
-                "Date: ${DateFormat.yMMMMd().format(date)}",
-                style: TextStyle(color: Theme.of(context).primaryColor),
+            Container(
+              margin: EdgeInsets.all(15),
+              child: OutlineButton(
+                child: Text(
+                  "Date: ${DateFormat.yMMMMd().format(date)}",
+                ),
+                borderSide:
+                    BorderSide(color: Theme.of(context).primaryColor, width: 1),
+                textColor: Theme.of(context).primaryColor,
+                onPressed: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: date,
+                    firstDate: DateTime.now().subtract(Duration(days: 30)),
+                    lastDate: DateTime.now(),
+                  ).then((pickedDate) {
+                    if (pickedDate != null) {
+                      setState(() {
+                        date = pickedDate;
+                      });
+                    }
+                  });
+                },
               ),
-              onPressed: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: date,
-                  firstDate: DateTime.now().subtract(Duration(days: 30)),
-                  lastDate: DateTime.now(),
-                ).then((pickedDate) {
-                  if (pickedDate != null) {
-                    setState(() {
-                      date = pickedDate;
-                    });
-                  }
-                });
-              },
             ),
             Container(
                 alignment: Alignment.centerRight,
