@@ -10,8 +10,7 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Expanded(
-        child: ListView.builder(
+    return (ListView.builder(
       itemCount: transactions.length + 1,
       itemBuilder: (BuildContext ctx, int index) {
         if (transactions.length == 0) {
@@ -22,11 +21,12 @@ class TransactionList extends StatelessWidget {
                 style: TextStyle(
                     color: Theme.of(context).primaryColorLight, fontSize: 20),
               ),
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(
+                  MediaQuery.of(context).size.shortestSide * 0.05),
             ),
             Image.asset(
               "assets/images/waiting.png",
-              height: 75,
+              height: MediaQuery.of(context).size.height * 0.1,
               color: Colors.grey[300],
             )
           ]);
@@ -38,6 +38,6 @@ class TransactionList extends StatelessWidget {
         return TransactionCard(transactions[index], deleteTransaction);
       },
       physics: BouncingScrollPhysics(),
-    )));
+    ));
   }
 }

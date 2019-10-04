@@ -39,14 +39,13 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 25),
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 0),
-              child: Flex(
+    return Card(
+      child: Column(
+        children: [
+          Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * 0.02),
+              child: Row(
                 children: groupedTransactionValues.map((data) {
                   return ChartBar(
                     label: data['day'],
@@ -57,19 +56,18 @@ class Chart extends StatelessWidget {
                   );
                 }).toList(),
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                direction: Axis.horizontal,
-              ),
-            ),
-            Text(
-              "Total Spending: ${NumberFormat.compactCurrency(symbol: '\$').format(totalSpending)}",
-              style: TextStyle(color: Colors.white),
-            ),
-          ]),
-        ),
-        elevation: 6,
-        color: Theme.of(context).primaryColorDark,
+              )),
+          Text(
+            "Total Spending: ${NumberFormat.compactCurrency(symbol: '\$').format(totalSpending)}",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: MediaQuery.of(context).textScaleFactor * 14),
+          ),
+        ],
+        mainAxisAlignment: MainAxisAlignment.center,
       ),
-      width: double.infinity,
+      elevation: 6,
+      color: Theme.of(context).primaryColorDark,
     );
   }
 }

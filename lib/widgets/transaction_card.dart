@@ -23,28 +23,32 @@ class TransactionCard extends StatelessWidget {
                 child: Text(
                   formater.format(transaction.amount),
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: MediaQuery.of(context).textScaleFactor * 18,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColor),
                 ),
                 margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                width: 75,
+                width: MediaQuery.of(context).size.width * 0.175,
                 alignment: Alignment.center,
               ),
               Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       transaction.title,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: MediaQuery.of(context).textScaleFactor * 18,
                           fontWeight: FontWeight.w700,
                           color: Theme.of(context).primaryColor),
                     ),
                     Text(
                       DateFormat.yMMMd().format(transaction.date),
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize:
+                              MediaQuery.of(context).textScaleFactor * 13),
                     )
                   ],
                 ),
@@ -59,14 +63,12 @@ class TransactionCard extends StatelessWidget {
                 child: Icon(
                   Icons.delete_outline,
                   color: Theme.of(context).primaryColorDark,
-                  size: 30,
+                  size: MediaQuery.of(context).textScaleFactor * 25,
                 ),
                 onPressed: () {
                   deleteTransaction(transaction);
                 },
               ),
-              width: 75,
-              height: 75,
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

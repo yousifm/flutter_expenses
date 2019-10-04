@@ -53,35 +53,56 @@ class _HomePageState extends State<HomePage> {
   }
 
   void startAddNewTransaction(BuildContext context) {
-    showModalBottomSheet(
+    showModalBottomSheet<dynamic>(
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       context: context,
       builder: (_) {
-        return InputArea(onSubmit);
+        return Container(
+          child: InputArea(onSubmit),
+          height: MediaQuery.of(context).size.height * 0.9,
+        );
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Expenses"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              startAddNewTransaction(context);
-            },
-          )
-        ],
-        backgroundColor: Theme.of(context).primaryColorDark,
+    final appBar = AppBar(
+      title: Text(
+        "Expenses",
+        style: TextStyle(fontSize: MediaQuery.of(context).textScaleFactor * 25),
       ),
+      actions: [
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            startAddNewTransaction(context);
+          },
+        )
+      ],
+      backgroundColor: Theme.of(context).primaryColorDark,
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: Container(
         child: Column(
           children: [
-            Chart(_recentTransactions),
-            TransactionList(transactions, deleteTransaction)
+            Container(
+              child: Chart(_recentTransactions),
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).viewPadding.vertical) *
+                  0.55,
+            ),
+            Container(
+              child: TransactionList(transactions, deleteTransaction),
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).viewPadding.vertical) *
+                  0.40,
+            ),
           ],
         ),
         width: double.infinity,

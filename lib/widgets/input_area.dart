@@ -51,7 +51,11 @@ class _InputAreaState extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.015,
+          right: MediaQuery.of(context).size.width * 0.05,
+          left: MediaQuery.of(context).size.width * 0.05,
+        ),
         child: Column(
           children: [
             TextField(
@@ -65,7 +69,8 @@ class _InputAreaState extends State<StatefulWidget> {
                   TextInputType.numberWithOptions(decimal: true, signed: false),
             ),
             Container(
-              margin: EdgeInsets.all(15),
+              margin: EdgeInsets.all(
+                  MediaQuery.of(context).size.shortestSide * 0.01),
               child: OutlineButton(
                 child: Text(
                   "Date: ${DateFormat.yMMMMd().format(date)}",
